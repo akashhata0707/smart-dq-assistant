@@ -17,7 +17,7 @@ st.set_page_config(
     layout="wide"
 )
 
-os.environ["GROQ_API_KEY"] = "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"  # paste your key
+os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY", "")  # paste your key
 client = Groq()
 
 # --- Pydantic Models ---
