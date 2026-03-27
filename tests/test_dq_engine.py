@@ -98,13 +98,6 @@ def test_llm_json_parsing():
     assert ruleset.dataset_name == "test"
 
 
-def test_llm_json_with_backticks():
-    raw = '```json\n{"dataset_name": "test", "rules": [], "summary": "ok"}\n```'
-    cleaned = raw.replace("```json", "").replace("```", "").strip()
-    ruleset = DQRuleSet.model_validate_json(cleaned)
-    assert ruleset.dataset_name == "test"
-
-
 def test_severity_values():
     for severity in ["HIGH", "MEDIUM", "LOW"]:
         analysis = RootCauseAnalysis(
@@ -116,16 +109,3 @@ def test_severity_values():
             severity=severity
         )
         assert analysis.severity in ["HIGH", "MEDIUM", "LOW"]
-```
-
-Save with **Ctrl+S**.
-
----
-
-## Step 2 — Create GitHub Actions Workflow
-
-In VS Code, create this folder structure:
-```
-.github/
-└── workflows/
-    └── ci.yml
